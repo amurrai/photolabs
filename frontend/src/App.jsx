@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PhotoListItem from './components/PhotoListItem';
+import PhotoList from 'components/PhotoList';
 import './App.scss';
 
 const sampleDataForPhotoListItem = {
@@ -14,10 +14,12 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
+const photos = new Array(3);
+
 const App = () => {
   return (
     <div className="App">
-      <PhotoListItem data={sampleDataForPhotoListItem}/>
+      <PhotoList data={sampleDataForPhotoListItem} />
     </div>
   );
 };
