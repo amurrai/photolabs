@@ -14,12 +14,10 @@ const sampleDataForPhotoListItem = {
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
-const photos = new Array(3);
-
 const App = () => {
   return (
     <div className="App">
-      <PhotoList data={sampleDataForPhotoListItem} />
+      <PhotoList />
     </div>
   );
 };

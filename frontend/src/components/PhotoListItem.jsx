@@ -9,11 +9,11 @@ const PhotoListItem = ({data}) => {
   return (
     <div className="photo-list__item">
       <PhotoFavButton />
-      <img className="photo-list__image" src={data.imageSource} />
+      <img className="photo-list__image" src={data.urls.regular} />
       <div className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={data.profile} />
+        <img className="photo-list__user-profile" src={data.user.profile} />
         <div className="photo-list__user-info">
-          <span> {data.username} </span> <br />
+          <span> {data.user.name} </span> <br />
           <span className="photo-list__user-location">{data.location.city}, {data.location.country}</span>
         </div>
       </div>
