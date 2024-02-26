@@ -12,10 +12,11 @@ const HomeRoute = ({photos, topics}) => {
     setFavourites(favourites.filter((value => {return value !== id}))) :
     setFavourites([...favourites, id])
   };
+  const isFavPhotoExist = !!favourites.length;
 
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favourites={favourites}/>
+      <TopNavigation topics={topics} isFavPhotoExist={isFavPhotoExist}/>
       <PhotoList photos={photos} favourites={favourites} switchFavourite={switchFavourite}/>
     </div>
   );
