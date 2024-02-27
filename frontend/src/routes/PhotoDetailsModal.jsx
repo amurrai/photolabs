@@ -7,7 +7,7 @@ import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = ({modal, setModal, favourites, switchFavourite}) => {
   const handleClick = () => {
-    setModal('off')
+    setModal('off') // Function for close button on modal
   }
 
   return (

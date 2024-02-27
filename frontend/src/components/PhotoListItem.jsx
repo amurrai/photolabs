@@ -6,7 +6,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({photo, favourites, switchFavourite, setModal}) => {
   const handleClick = () => {
-    setModal(photo)
+    setModal(photo) // Function to switch modal to clicked photo
   };
   return (
     <div className="photo-list__item">

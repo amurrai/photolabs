@@ -7,15 +7,15 @@ import topics from 'mocks/topics';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const App = () => {
-  const [modal, setModal] = useState('off')
+  const [modal, setModal] = useState('off') // Photo details modal switch
 
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState([]); // Favourites stored by id in array
   const switchFavourite = (id) => {
     favourites.includes(id) ?
     setFavourites(favourites.filter((value => {return value !== id}))) :
     setFavourites([...favourites, id])
   };
-  const isFavPhotoExist = !!favourites.length;
+  const isFavPhotoExist = !!favourites.length; // Check for favourited photos passed to NavBar notification
 
   return (
     <div className="App">
