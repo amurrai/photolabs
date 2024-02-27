@@ -6,7 +6,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({photo, favourites, switchFavourite, setModal}) => {
   const handleClick = () => {
-    setModal('on')
+    setModal(photo)
   };
   return (
     <div onClick={handleClick} className="photo-list__item">

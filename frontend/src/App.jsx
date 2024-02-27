@@ -8,10 +8,11 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const App = () => {
   const [modal, setModal] = useState('off')
+
   return (
     <div className="App">
       <HomeRoute photos={photos} topics={topics} setModal={setModal}/>
-      {modal === 'on' && <PhotoDetailsModal setModal={setModal} />}
+      {modal !== 'off' && <PhotoDetailsModal modal={modal} setModal={setModal} />}
     </div>
   );
 };
