@@ -5,7 +5,7 @@ import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 import photos from 'mocks/photos';
 
-const HomeRoute = ({photos, topics}) => {
+const HomeRoute = ({photos, topics, setModal}) => {
   const [favourites, setFavourites] = useState([]);
   const switchFavourite = (id) => {
     favourites.includes(id) ?
@@ -17,7 +17,7 @@ const HomeRoute = ({photos, topics}) => {
   return (
     <div className="home-route">
       <TopNavigation topics={topics} isFavPhotoExist={isFavPhotoExist}/>
-      <PhotoList photos={photos} favourites={favourites} switchFavourite={switchFavourite}/>
+      <PhotoList photos={photos} favourites={favourites} switchFavourite={switchFavourite} setModal={setModal}/>
     </div>
   );
 };
