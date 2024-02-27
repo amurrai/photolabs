@@ -5,14 +5,8 @@ import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 import photos from 'mocks/photos';
 
-const HomeRoute = ({photos, topics, setModal}) => {
-  const [favourites, setFavourites] = useState([]);
-  const switchFavourite = (id) => {
-    favourites.includes(id) ?
-    setFavourites(favourites.filter((value => {return value !== id}))) :
-    setFavourites([...favourites, id])
-  };
-  const isFavPhotoExist = !!favourites.length;
+const HomeRoute = ({photos, topics, setModal, isFavPhotoExist, favourites, switchFavourite}) => {
+  
 
   return (
     <div className="home-route">

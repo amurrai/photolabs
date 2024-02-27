@@ -9,9 +9,9 @@ const PhotoListItem = ({photo, favourites, switchFavourite, setModal}) => {
     setModal(photo)
   };
   return (
-    <div onClick={handleClick} className="photo-list__item">
+    <div className="photo-list__item">
       <PhotoFavButton photo={photo} favourites={favourites} switchFavourite={switchFavourite}/>
-      <img className="photo-list__image" src={photo.urls.regular} />
+      <img onClick={handleClick} className="photo-list__image" src={photo.urls.regular} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.user.profile} />
         <div className="photo-list__user-info">
