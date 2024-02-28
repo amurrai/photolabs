@@ -4,11 +4,11 @@ import '../styles/HomeRoute.scss';
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
-const HomeRoute = ({photos, topics, setModal, isFavPhotoExist, favourites, switchFavourite}) => {
+const HomeRoute = ({photos, topics, setPhotoSelected, isFavPhotoExist, favourites, switchFavourite}) => {
   return (
     <div className="home-route">
       <TopNavigation topics={topics} isFavPhotoExist={isFavPhotoExist}/>
-      <PhotoList photos={photos} favourites={favourites} switchFavourite={switchFavourite} setModal={setModal}/>
+      <PhotoList photos={photos} favourites={favourites} switchFavourite={switchFavourite} setPhotoSelected={setPhotoSelected}/>
     </div>
   );
 };

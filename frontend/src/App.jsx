@@ -5,22 +5,35 @@ import HomeRoute from 'routes/HomeRoute';
 import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
-  const [modal, setModal] = useState('off') // Photo details modal switch
-
-  const [favourites, setFavourites] = useState([]); // Favourites stored by id in array
-  const switchFavourite = (id) => {
-    favourites.includes(id) ?
-    setFavourites(favourites.filter((value => {return value !== id}))) :
-    setFavourites([...favourites, id])
-  };
-  const isFavPhotoExist = !!favourites.length; // Check for favourited photos passed to NavBar notification
+  const {
+    state,
+    setPhotoSelected,
+    updateToFavPhotoIds: switchFavourite,
+    // onLoadTopic,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
+  console.log(state);
 
   return (
     <div className="App">
-      <HomeRoute photos={photos} topics={topics} setModal={setModal} isFavPhotoExist={isFavPhotoExist} favourites={favourites} switchFavourite={switchFavourite}/>
-      {modal !== 'off' && <PhotoDetailsModal modal={modal} setModal={setModal} isFavPhotoExist={isFavPhotoExist} favourites={favourites} switchFavourite={switchFavourite}/>}
+      <HomeRoute 
+        photos={photos} 
+        topics={topics} 
+        setPhotoSelected={setPhotoSelected} 
+        isFavPhotoExist={!!state.favourites.length} 
+        favourites={state.favourites}
+        switchFavourite={switchFavourite}
+        onClosePhotoDetailsModal={onClosePhotoDetailsModal} />
+      {state.photoSelected !== 'off' && 
+      <PhotoDetailsModal 
+        modal={state.photoSelected} 
+        setPhotoSelected={setPhotoSelected} 
+        onClosePhotoDetailsModal={onClosePhotoDetailsModal} 
+        favourites={state.favourites} 
+        switchFavourite={switchFavourite}/>}
     </div>
   );
 };

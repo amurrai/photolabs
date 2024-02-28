@@ -4,9 +4,11 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 
-const PhotoListItem = ({photo, favourites, switchFavourite, setModal}) => {
+const PhotoListItem = ({photo, favourites, switchFavourite, setPhotoSelected}) => {
   const handleClick = () => {
-    setModal(photo) // Function to switch modal to clicked photo
+    setPhotoSelected('off')
+    setPhotoSelected(photo) // Function to switch modal to clicked photo
+    console.log(photo);
   };
   return (
     <div className="photo-list__item">
