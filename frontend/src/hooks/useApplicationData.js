@@ -1,21 +1,72 @@
-import {useState} from 'react';
+import {useReducer} from 'react';
+
+export const ACTIONS = {
+  FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
+  FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  SELECT_PHOTO: 'SELECT_PHOTO',
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FAV_PHOTO_ADDED':
+      return {...state, favourites: [...state.favourites, action.payload]}
+    case 'FAV_PHOTO_REMOVED':
+      return {...state, favourites: state.favourites.filter((value => {return value !== action.payload}))}
+    // case 'SET_PHOTO_DATA':
+    //   return {
+
+    //   }
+    // case 'SET_TOPIC_DATA':
+    //   return {
+
+    //   }
+    case 'SELECT_PHOTO':
+      return {...state, photoSelected: action.payload}
+    case DISPLAY_PHOTO_DETAILS:
+    return {
+
+    }
+    default:
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      );
+  }
+}
 
 const useApplicationData = () => {
-  const [state, setState] = useState({
+  const [state, dispatch] = useReducer(reducer, {
     photoSelected: 'off',
     favourites: []
   });
   
   const updateToFavPhotoIds = (id) => {
     state.favourites.includes(id) ?
-    setState({...state, favourites: state.favourites.filter((value => {return value !== id}))}) :
-    setState({...state, favourites: [...state.favourites, id]})
+    dispatch({
+      type: 'FAV_PHOTO_REMOVED',
+      payload: id
+    }) :
+    dispatch({
+      type:'FAV_PHOTO_ADDED',
+      payload: id
+    })
   };
 
-  const setPhotoSelected = (photo) => setState({...state, photoSelected: photo}) 
+  const setPhotoSelected = (photo) => {
+    dispatch({
+      type: 'SELECT_PHOTO',
+      payload: photo
+    })
+  };
 
-  const onClosePhotoDetailsModal = () => setPhotoSelected('off');
-
+  const onClosePhotoDetailsModal = () => {
+    dispatch({
+      type: 'SELECT_PHOTO',
+      payload: 'off'
+    })
+  };
 
   return {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal}
 };
