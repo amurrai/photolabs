@@ -12,7 +12,6 @@ const App = () => {
     state,
     setPhotoSelected,
     updateToFavPhotoIds: switchFavourite,
-    // onLoadTopic,
     onClosePhotoDetailsModal,
   } = useApplicationData();
   console.log(state);
@@ -29,7 +28,7 @@ const App = () => {
         onClosePhotoDetailsModal={onClosePhotoDetailsModal} />
       {state.photoSelected !== 'off' && 
       <PhotoDetailsModal 
-        modal={state.photoSelected} 
+        photoSelected={state.photoSelected} 
         setPhotoSelected={setPhotoSelected} 
         onClosePhotoDetailsModal={onClosePhotoDetailsModal} 
         favourites={state.favourites} 

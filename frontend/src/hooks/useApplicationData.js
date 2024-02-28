@@ -1,17 +1,21 @@
 import {useState} from 'react';
 
 const useApplicationData = () => {
-  const [favourites, setFavourites] = useState([]); // Favourites stored by id in array
+  const [state, setState] = useState({
+    photoSelected: 'off',
+    favourites: []
+  });
   
   const updateToFavPhotoIds = (id) => {
-    favourites.includes(id) ?
-    setFavourites(favourites.filter((value => {return value !== id}))) :
-    setFavourites([...favourites, id])
+    state.favourites.includes(id) ?
+    setState({...state, favourites: state.favourites.filter((value => {return value !== id}))}) :
+    setState({...state, favourites: [...state.favourites, id]})
   };
 
-  const [photoSelected, setPhotoSelected] = useState('off');
+  const setPhotoSelected = (photo) => setState({...state, photoSelected: photo}) 
+
   const onClosePhotoDetailsModal = () => setPhotoSelected('off');
-  const state = {photoSelected, favourites}
+
 
   return {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal}
 };
