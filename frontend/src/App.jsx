@@ -10,7 +10,8 @@ const App = () => {
     state,
     setPhotoSelected,
     updateToFavPhotoIds: switchFavourite,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
+    onLoadTopic
   } = useApplicationData();
 
   return (
@@ -23,7 +24,8 @@ const App = () => {
         isFavPhotoExist={!!state.favourites.length} 
         favourites={state.favourites}
         switchFavourite={switchFavourite}
-        onClosePhotoDetailsModal={onClosePhotoDetailsModal} />
+        onClosePhotoDetailsModal={onClosePhotoDetailsModal}
+        onLoadTopic={onLoadTopic} />
       {state.photoSelected !== '' && 
       <PhotoDetailsModal 
         photoSelected={state.photoSelected} 

@@ -8,7 +8,9 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
+
 }
 
 // Reducer function dispatch actions
@@ -94,7 +96,20 @@ const useApplicationData = () => {
     })
   };
 
-  return {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal}
+  const onLoadTopic = (id) => {
+    axios.get(`http://localhost:8001/api/topics/photos/${id}`)
+      .then((res) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: res.data
+        })
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
+  return {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal, onLoadTopic}
 };
 
 export default useApplicationData;
