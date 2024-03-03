@@ -46,20 +46,25 @@ const useApplicationData = () => {
   
   // Fetch photo and topic data from API
   useEffect(() => {
-    axios.get('http://localhost:8001/api/photos')
-      .then((res) => {
-        dispatch({
-          type: ACTIONS.SET_PHOTO_DATA,
-          payload: res.data
-        })
+    const photoPromise = axios.get('http://localhost:8001/api/photos');
+    const topicPromise = axios.get('http://localhost:8001/api/topics');
+
+    const promises = [photoPromise, topicPromise]
+
+  Promise.all(promises)
+    .then((resArr) => {
+      dispatch({
+        type: ACTIONS.SET_PHOTO_DATA,
+        payload: resArr[0].data
       })
-    axios.get('http://localhost:8001/api/topics')
-    .then((res) => {
       dispatch({
         type: ACTIONS.SET_TOPIC_DATA,
-        payload: res.data
+        payload: resArr[1].data
       })
-    })  
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }, [])
   
   // Adds or removes photo to favourites
