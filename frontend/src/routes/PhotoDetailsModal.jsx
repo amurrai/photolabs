@@ -5,7 +5,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 
-const PhotoDetailsModal = ({photos, photoSelected, setPhotoSelected, favourites, switchFavourite, onClosePhotoDetailsModal}) => {
+const PhotoDetailsModal = ({photoSelected, setPhotoSelected, favourites, switchFavourite, onClosePhotoDetailsModal}) => {
   const handleClick = () => {
     onClosePhotoDetailsModal() // Function for close button on modal
   }

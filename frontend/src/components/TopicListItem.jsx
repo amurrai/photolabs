@@ -9,7 +9,7 @@ const TopicListItem = ({topic, onLoadTopic}) => {
 
   return (
     <div className="topic-list__item">
-      <h2 onClick={handleClick}>{topic.title} </h2>
+      <span onClick={handleClick}>{topic.title} </span>
     </div>
   );
 };
