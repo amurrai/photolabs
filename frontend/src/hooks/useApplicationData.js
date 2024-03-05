@@ -118,7 +118,28 @@ const useApplicationData = () => {
       })
   }
 
-  return {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal, onLoadTopic}
+  const displayFavourites = (favourites) => {
+    const favPhotos = [];
+    axios.get('http://localhost:8001/api/photos')
+      .then((res) => {
+        favourites.map((id) => {
+          favPhotos.push(res.data.find(item => item.id === id));
+        })
+      })
+      .then(() => {
+        console.log(favPhotos);
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: favPhotos
+        })
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
+
+  }
+
+  return {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal, onLoadTopic, displayFavourites}
 };
 
 export default useApplicationData;
