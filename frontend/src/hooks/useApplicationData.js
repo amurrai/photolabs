@@ -51,20 +51,20 @@ const useApplicationData = () => {
 
     const promises = [photoPromise, topicPromise]
 
-  Promise.all(promises)
-    .then((resArr) => {
-      dispatch({
-        type: ACTIONS.SET_PHOTO_DATA,
-        payload: resArr[0].data
+    Promise.all(promises)
+      .then((resArr) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: resArr[0].data
+        })
+        dispatch({
+          type: ACTIONS.SET_TOPIC_DATA,
+          payload: resArr[1].data
+        })
       })
-      dispatch({
-        type: ACTIONS.SET_TOPIC_DATA,
-        payload: resArr[1].data
-      })
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }, [])
   
   // Adds or removes photo to favourites
@@ -95,7 +95,8 @@ const useApplicationData = () => {
   };
 
   const onLoadTopic = (id) => {
-    axios.get(`http://localhost:8001/api/topics/photos/${id}`)
+    id ?
+      axios.get(`http://localhost:8001/api/topics/photos/${id}`)
       .then((res) => {
         dispatch({
           type: ACTIONS.SET_PHOTO_DATA,
@@ -104,7 +105,17 @@ const useApplicationData = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
-      });
+      }) :
+      axios.get('http://localhost:8001/api/photos')
+      .then((res) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: res.data
+        })
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
   }
 
   return {state, updateToFavPhotoIds, setPhotoSelected, onClosePhotoDetailsModal, onLoadTopic}
