@@ -28,6 +28,7 @@ const App = () => {
         onLoadTopic={onLoadTopic} />
       {state.photoSelected !== '' && 
       <PhotoDetailsModal 
+        photos={state.photoData} 
         photoSelected={state.photoSelected} 
         setPhotoSelected={setPhotoSelected} 
         onClosePhotoDetailsModal={onClosePhotoDetailsModal} 

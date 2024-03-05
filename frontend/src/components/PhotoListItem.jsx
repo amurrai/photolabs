@@ -6,7 +6,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({photo, favourites, switchFavourite, setPhotoSelected, photoSelected}) => {
   const handleClick = () => {
-    setPhotoSelected(photo)
+    setPhotoSelected(photo.id)
   };
   return (
     <div className="photo-list__item">

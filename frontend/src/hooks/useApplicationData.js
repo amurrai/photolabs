@@ -9,8 +9,8 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
-
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS'
 }
 
 // Reducer function dispatch actions
@@ -25,11 +25,9 @@ const reducer = (state, action) => {
     case 'SET_TOPIC_DATA':
       return {...state, topicData: action.payload}
     case 'SELECT_PHOTO':
-      return {...state, photoSelected: action.payload}
-    case 'DISPLAY_PHOTO_DETAILS':
-    return {
-
-    }
+      return {...state, photoSelected: state.photoData.find(photo => photo.id === action.payload)}
+    case 'CLOSE_PHOTO_DETAILS':
+      return {...state, photoSelected: ''}
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -82,16 +80,16 @@ const useApplicationData = () => {
     })
   };
 
-  const setPhotoSelected = (photo) => {
+  const setPhotoSelected = (id) => {
     dispatch({
       type: ACTIONS.SELECT_PHOTO,
-      payload: photo
+      payload: id
     })
   };
 
   const onClosePhotoDetailsModal = () => {
     dispatch({
-      type: ACTIONS.SELECT_PHOTO,
+      type: ACTIONS.CLOSE_PHOTO_DETAILS,
       payload: ''
     })
   };
