@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
@@ -9,7 +9,7 @@ const App = () => {
   const {
     state,
     setPhotoSelected,
-    updateToFavPhotoIds: switchFavourite,
+    updateToFavPhotoIds: updateToFavPhotoIds,
     onClosePhotoDetailsModal,
     onLoadTopic
   } = useApplicationData();
@@ -23,7 +23,7 @@ const App = () => {
         setPhotoSelected={setPhotoSelected} 
         isFavPhotoExist={!!state.favourites.length} 
         favourites={state.favourites}
-        switchFavourite={switchFavourite}
+        updateToFavPhotoIds={updateToFavPhotoIds}
         onClosePhotoDetailsModal={onClosePhotoDetailsModal}
         onLoadTopic={onLoadTopic} />
       {state.photoSelected !== '' && 
@@ -32,7 +32,7 @@ const App = () => {
         setPhotoSelected={setPhotoSelected} 
         onClosePhotoDetailsModal={onClosePhotoDetailsModal} 
         favourites={state.favourites} 
-        switchFavourite={switchFavourite}/>}
+        updateToFavPhotoIds={updateToFavPhotoIds}/>}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 
-const PhotoDetailsModal = ({photoSelected, setPhotoSelected, favourites, switchFavourite, onClosePhotoDetailsModal}) => {
+const PhotoDetailsModal = ({photoSelected, setPhotoSelected, favourites, updateToFavPhotoIds, onClosePhotoDetailsModal}) => {
   const handleClick = () => {
     onClosePhotoDetailsModal() // Function for close button on modal
   }
@@ -15,7 +15,7 @@ const PhotoDetailsModal = ({photoSelected, setPhotoSelected, favourites, switchF
       <button onClick={handleClick} className='photo-details-modal__close-button'>
         <img src={closeSymbol} alt="close symbol" />
       </button>
-      <PhotoFavButton photo={photoSelected} favourites={favourites} switchFavourite={switchFavourite}/>
+      <PhotoFavButton photo={photoSelected} favourites={favourites} updateToFavPhotoIds={updateToFavPhotoIds}/>
       <img className='photo-details-modal__image' src={photoSelected.urls.full} />
       <div className='photo-details-modal__photographer-details'>
         <img className='photo-details-modal__photographer-profile' src={photoSelected.user.profile} />
@@ -25,7 +25,7 @@ const PhotoDetailsModal = ({photoSelected, setPhotoSelected, favourites, switchF
         </div>
       </div>
       <h1 className='photo-details-modal__header'>Similar Photos</h1>
-      <PhotoList photos={Object.values(photoSelected.similar_photos)} favourites={favourites} switchFavourite={switchFavourite} setPhotoSelected={setPhotoSelected}/>
+      <PhotoList photos={Object.values(photoSelected.similar_photos)} favourites={favourites} updateToFavPhotoIds={updateToFavPhotoIds} setPhotoSelected={setPhotoSelected}/>
     </div>
   )
 };
