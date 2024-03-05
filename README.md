@@ -13,8 +13,8 @@ Main features
 
 ## Final Product
 
-!["Main view"](https://github.com/amurrai/photolabs/docs/main-view.png)
-!["Photo detail modal view"](https://github.com/amurrai/photolabs/docs/photo-detail-modal.png)
+!["Main view"](https://github.com/amurrai/photolabs/blob/main/docs/main-view.png)
+!["Photo detail modal view"](https://github.com/amurrai/photolabs/blob/main/docs/photo-detail-modal.png)
 
 ## Setup
 
